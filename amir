@@ -1,1 +1,4 @@
-
+vless://db008127-e4c7-46be-85f1-c7b9f156a2e0@mci.khodayeman.sbs:443?type=grpc&serviceName=&mode=multi&security=tls&fp=chrome&alpn=http%2F1.1%2Ch2&sni=qp.khodayeman.sbs#MCI%20(GRPC%2BTLS)-iywjo5px
+vless://44278566-8543-4c05-bc6e-b7829b8da766@mci.khodayeman.sbs:2083?type=ws&path=%2F&security=tls&fp=chrome&alpn=http%2F1.1%2Ch2&sni=qp.khodayeman.sbs#MCI%20(WS%2BTLS)-ij4mf8y3
+vless://bce94020-92d9-41b3-9538-23012c22152b@mtn.khodayeman.sbs:2053?type=grpc&serviceName=&mode=multi&security=reality&fp=chrome&pbk=DJ-wZFmPZT-V6i0fzX1o51y6YuovQaH634ufHrA1eB4&sni=ftp.debian.org&sid=62bfbace&spx=%2F#MTN%20(Reality%2BGRPC)-62vqtmie
+vless://f6fd26f8-9c86-48cd-9478-bd144bc552b1@mtn.khodayeman.sbs:8443?type=tcp&security=reality&fp=chrome&pbk=G80YcAG3VG73CWN_kSfLYPENLiXdqHRFKQbNBfyR9Vk&sni=ftp.debian.org&sid=9a4a66f3&spx=%2F#MTN%20(Reality%2BTCP)-545ad80u
