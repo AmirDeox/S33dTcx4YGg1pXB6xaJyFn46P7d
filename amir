@@ -1,4 +1,176 @@
-vless://6fcc9525-e329-4a0d-8f6c-3854e0489b44@91.107.143.211:443?mode=multi&security=reality&encryption=none&pbk=v9ALzRMRq3pOYvQ6sqvLJmg1m-ztlyorVCHgACai7Qg&fp=chrome&spx=%2F&type=grpc&serviceName=&sni=zaincash.iq&sid=23d855c3#%D9%85%D8%AE%D8%A7%D8%A8%D8%B1%D8%A7%D8%AA+-+%D9%87%D9%85%D8%B1%D8%A7%D9%87+%D8%A7%D9%88%D9%84+%22A%22
-vless://10894705-35b1-4305-9858-4bd4496153c3@91.107.143.211:8443?mode=multi&security=reality&encryption=none&pbk=DAVvMlAGJf9woz8VLTAOVne4zDhbfoaMMxde9EkTGgg&fp=chrome&spx=%2F&type=grpc&serviceName=&sni=zaincash.iq&sid=ecda3a4e#%D9%85%D8%AE%D8%A7%D8%A8%D8%B1%D8%A7%D8%AA+-+%D9%87%D9%85%D8%B1%D8%A7%D9%87+%D8%A7%D9%88%D9%84+%22D%22
-vless://3e0408f6-7db0-4124-8eb7-808e1dbf8bda@[2a01:4f8:1c17:cbde::1]:2083?mode=multi&security=reality&encryption=none&pbk=tu6ViktRnMT0oz3iiPXln0LoYdZZwquoQ3ytpvA1NAM&fp=chrome&spx=%2F&type=grpc&serviceName=&sni=zaincash.iq&sid=3f9bd40c#%D8%A7%DB%8C%D8%B1%D8%A7%D9%86%D8%B3%D9%84+%22A%22
-vless://7cf65875-4a3a-4942-90be-fb50a6a46579@[2a01:4f8:1c17:cbde::1]:2087?mode=multi&security=reality&encryption=none&pbk=jZCYT3tMtHgVoH2Rq4asS1yNckL0slZfNpx7Rq8dh1c&fp=chrome&spx=%2F&type=grpc&serviceName=&sni=zaincash.iq&sid=0435f07b#%D8%A7%DB%8C%D8%B1%D8%A7%D9%86%D8%B3%D9%84+%22D%22
+{
+  "log": {
+    "access": "",
+    "error": "",
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "tag": "socks",
+      "port": 10808,
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ],
+        "routeOnly": false
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true,
+        "allowTransparent": false
+      }
+    },
+    {
+      "tag": "http",
+      "port": 10809,
+      "listen": "127.0.0.1",
+      "protocol": "http",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ],
+        "routeOnly": false
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true,
+        "allowTransparent": false
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "proxy",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.67.73.38",
+            "port": 443,
+            "users": [
+              {
+                "id": "f41b4405-1bdb-43e2-83c7-6901a008091e",
+                "alterId": 0,
+                "email": "6ct6rm2b",
+                "security": "auto",
+                "encryption": "none",
+                "flow": ""
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "allowInsecure": true,
+          "serverName": "a1.amirpalang.cfd",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ],
+          "fingerprint": "chrome",
+          "show": false
+        },
+        "wsSettings": {
+          "path": "/ws",
+          "headers": {
+            "Host": "a1.amirpalang.cfd"
+          }
+        },
+        "sockopt": {
+          "dialerProxy": "fragment",
+          "tcpKeepAliveIdle": 100,
+          "mark": 255
+        }
+      },
+      "mux": {
+        "enabled": false,
+        "concurrency": -1
+      }
+    },
+    
+    {
+      "tag": "fragment",
+      "protocol": "freedom",
+      "settings": {
+        "fragment": {
+          "packets": "tlshello",
+          "length": "10-20",
+          "interval": "10-20"
+        }
+      },
+      "streamSettings": {
+        "sockopt": {
+          "TcpNoDelay": true,
+          "tcpKeepAliveIdle": 100,
+          "mark": 255
+        }
+      }
+    },
+
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole",
+      "settings": {
+        "response": {
+          "type": "http"
+        }
+      }
+    }
+  ],
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "type": "field",
+        "inboundTag": [
+          "api"
+        ],
+        "outboundTag": "api",
+        "enabled": true
+      },
+        
+      {
+        "id": "f41b4405-1bdb-43e2-83c7-6901a008091e",
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": [
+          "domain:ir",
+          "geosite:cn"
+        ],
+        "enabled": true
+      },
+      {
+        "id": "f41b4405-1bdb-43e2-83c7-6901a008091e",
+        "type": "field",
+        "outboundTag": "direct",
+        "ip": [
+          "geoip:private",
+          "geoip:cn",
+          "geoip:ir"
+        ],
+        "enabled": true
+      },
+      {
+        "id": "f41b4405-1bdb-43e2-83c7-6901a008091e",
+        "type": "field",
+        "port": "0-65535",
+        "outboundTag": "proxy",
+        "enabled": true
+      }
+    ]
+  }
+}
